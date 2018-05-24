@@ -50,7 +50,7 @@ var particlesConfig = {
         "enable": true,
         "distance": 150,
         "color": "#81ecec",
-        "opacity": 0.4,
+        "opacity": 0.7,
         "width": 1
       },
       "move": {
@@ -115,8 +115,7 @@ $(document).ready(function() {
     console.log("Document ready");
 
     //sets up particle background ([id of particles div], [json config], [callback function])
-    particlesJS('particles-js', particlesConfig, function() {
-        console.log('callback - particles.js config loaded');
-    });
+    particlesJS('particles-js', particlesConfig);
+    console.log('particles.js loaded')
     
 });
