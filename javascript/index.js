@@ -114,7 +114,7 @@ var particlesConfig = {
 $(document).ready(function() {
     console.log("Document ready");
 
-    //sets up particle background ([id of particles div], [json config], [callback function])
+    //sets up particle background ([id of particles div], [json config]
     particlesJS('particles-js', particlesConfig);
     console.log('particles.js loaded')
     
