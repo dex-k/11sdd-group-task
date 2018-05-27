@@ -9,7 +9,7 @@ var particlesConfig = {
         }
       },
       "color": {
-        "value": "#7ed6df"
+        "value": "#EBCF24"
       },
       "shape": {
         "type": "circle",
@@ -30,18 +30,18 @@ var particlesConfig = {
         "value": 0.7,
         "random": false,
         "anim": {
-          "enable": false,
+          "enable": true,
           "speed": 1,
-          "opacity_min": 0.1,
+          "opacity_min": 0.4,
           "sync": false
         }
       },
       "size": {
-        "value": 3,
+        "value": 2,
         "random": true,
         "anim": {
-          "enable": false,
-          "speed": 40,
+          "enable": true,
+          "speed": 1,
           "size_min": 0.1,
           "sync": false
         }
@@ -49,9 +49,9 @@ var particlesConfig = {
       "line_linked": {
         "enable": true,
         "distance": 150,
-        "color": "#81ecec",
+        "color": "#F1DA2A",
         "opacity": 0.7,
-        "width": 1
+        "width": 0.4
       },
       "move": {
         "enable": true,

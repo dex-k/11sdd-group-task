@@ -1,9 +1,14 @@
 /* For GENERAL styling rules */
-
+body {
+    background: linear-gradient(
+        135deg, 
+        #201921,
+        #1f161b
+    );
+}
 /*particles-js*/
 #particles-js {
     width: 100%;
     height: 100%;
-    background-color: #fff;
     z-index: -1;
 }
