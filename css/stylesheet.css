@@ -57,12 +57,21 @@ html, body {
     width: 20%;
     height: 5px;
     margin-top: 5px;
-    background-color: #636363
+    background-color: #636363;
+
+    animation: accent-shrink 0.1s ease-in forwards;
 }
 .app:hover .accent-bar{
-    width: 42.5%;
+    animation: accent-grow 0.2s ease-out forwards;
 }
-
+@keyframes accent-grow {
+    from {width: 20%}
+    to {width: 42.5%}
+}
+@keyframes accent-shrink {
+    from {width: 42.5%}
+    to {width: 20%}
+}
 /*TESTING//
 div {
     border: 1px solid red;
