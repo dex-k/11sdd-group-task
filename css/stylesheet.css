@@ -1,16 +1,69 @@
 /* For GENERAL styling rules */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
 .flex {
     display: flex;
 }
 /*particles-js*/
 #particles-js {
+    margin: 0;
     width: 100%;
     height: 100%;
     background-color: #fff;
     z-index: -1;
+    position: absolute;
+}
+/*page*/
+/*App launcher*/
+#app-launcher-wrapper {
+    flex-grow: 1;   
+    align-items: center;
+    justify-content: center;
+}
+#app-launcher {
+    width: 100vw;
+    height: 100vh;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.app {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 2.5%;
+}
+.tile {
+    width: 16vw;
+    height: 16vw;
+    background-color: #eee;
+
+    justify-content: center;
+    align-items: center;
+}
+.app-icon {
+    width: 60%;
+    height: 60%;
+    background-color: #757575;
+    /* margin: 0 auto; */
+}
+.accent-bar {
+    width: 20%;
+    height: 5px;
+    margin-top: 5px;
+    background-color: #636363
+}
+.app:hover .accent-bar{
+    width: 42.5%;
 }
 
-/*TESTING*/
+/*TESTING//
 div {
     border: 1px solid red;
-}
+}/**/
