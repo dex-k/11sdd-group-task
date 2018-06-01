@@ -2,13 +2,11 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    width: 100vw;
 }
-
 .flex {
     display: flex;
 }
+
 /*particles-js*/
 #particles-js {
     margin: 0;
@@ -18,7 +16,7 @@ html, body {
     z-index: -1;
     position: absolute;
 }
-/*page*/
+
 /*App launcher*/
 #app-launcher-wrapper {
     flex-grow: 1;   
@@ -26,8 +24,8 @@ html, body {
     justify-content: center;
 }
 #app-launcher {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 
     flex-direction: row;
     align-items: center;
@@ -41,7 +39,9 @@ html, body {
 }
 .tile {
     width: 16vw;
+    min-width: 175px;;
     height: 16vw;
+    min-height: 175px;
     background-color: #eee;
 
     justify-content: center;
@@ -51,7 +51,6 @@ html, body {
     width: 60%;
     height: 60%;
     background-color: #757575;
-    /* margin: 0 auto; */
 }
 .accent-bar {
     width: 20%;
