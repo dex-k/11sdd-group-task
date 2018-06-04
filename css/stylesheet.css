@@ -58,6 +58,7 @@ html, body {
     margin-top: 5px;
     background-color: #636363;
     transition: width 0.2s; 
+    transition-timing-function: ease-in-out;
     /*Sytax means: transition the CHANGING /width/ property for 0.2s */
 }
 .app:hover .accent-bar{
