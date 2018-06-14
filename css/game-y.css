@@ -53,10 +53,13 @@ html, body {
 }
 .picture-tile {
     width: 5vw;
+
+    /*TODO: add these to media queries */
     min-width: 50px;
     max-width: 75px;
 
     height: 5vw;
+    /*TODO: add these to media queries */
     min-height: 50px;
     max-height: 75px;
 
@@ -67,3 +70,10 @@ html, body {
 .picture-tile:nth-child(5n){
     break-after: always;
 }
+
+.picture-tile {
+    background-image: "./path/to/image" ;
+}
+
+/* background positions in %
+*/
