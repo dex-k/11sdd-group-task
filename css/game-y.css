@@ -72,8 +72,58 @@ html, body {
 }
 
 .picture-tile {
-    background-image: "./path/to/image" ;
+    background-image: url('../media/psych.png') ;
+    /* 5x tile width's + inner margins */
+    background-size: calc(5*5vw + 8*0.25vw) calc(5*5vw + 8*0.25vw)
 }
 
-/* background positions in %
+/* background top corner % coordinates
+   calculated by percentage width of scaled tile + scaled margin
++---+--------------+--------------+--------------+--------------+--------------+
+|   | a            | b            | c            | d            | e            |
++---+--------------+--------------+--------------+--------------+--------------+
+| 1 | 00.00, 00.00 | 20.37, 00.00 | 40.75, 00.00 | 61.11, 00.00 | 81.48, 00.00 |
++---+--------------+--------------+--------------+--------------+--------------+
+| 2 | 00.00, 20.37 | 20.37, 20.37 | 40.75, 20.37 | 61.11, 20.37 | 81.48, 20.37 |
++---+--------------+--------------+--------------+--------------+--------------+
+| 3 | 00.00, 40.75 | 20.37, 40.75 | 40.75, 40.75 | 61.11, 40.75 | 81.48, 40.75 |
++---+--------------+--------------+--------------+--------------+--------------+
+| 4 | 00.00, 61.11 | 20.37, 61.11 | 40.75, 61.11 | 61.11, 61.11 | 81.48, 61.11 |
++---+--------------+--------------+--------------+--------------+--------------+
+| 5 | 00.00, 81.48 | 20.37, 81.48 | 40.75, 81.48 | 61.11, 81.48 | 81.48, 81.48 |
++---+--------------+--------------+--------------+--------------+--------------+
 */
+
+/* specific tile row/column background positions */
+/* rows / x-coords */
+.picture-tile[data-fluid-column="a"] { 
+    background-position-x: 0;
+}
+.picture-tile[data-fluid-column="b"] { 
+    background-position-x: 20.37%;
+}
+.picture-tile[data-fluid-column="c"] { 
+    background-position-x: 40.75%;
+}
+.picture-tile[data-fluid-column="d"] { 
+    background-position-x: 61.11%;
+}
+.picture-tile[data-fluid-column="e"] { 
+    background-position-x: 81.48%;
+}
+/* columns / y-coords */
+.picture-tile[data-fluid-row="1"] { 
+    background-position-y: 1;
+}
+.picture-tile[data-fluid-row="2"] { 
+    background-position-y: 20.37%;
+}
+.picture-tile[data-fluid-row="3"] { 
+    background-position-y: 40.75%;
+}
+.picture-tile[data-fluid-row="4"] { 
+    background-position-y: 61.11%;
+}
+.picture-tile[data-fluid-row="5"] { 
+    background-position-y: 81.48%;
+}
