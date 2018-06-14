@@ -23,21 +23,31 @@ html, body {
     width: 100%;
     justify-content: center;
     align-items: center;
-    border: 1px solid blue;
+    /* testing */
+    /* border: 1px solid blue; */
 }
 #picture-swap {
-    /* 5 time 5vw tile width, 2 times 0.5vw edge margin, 4 times 1vw separator (double margin) */
-    width: 30vw; 
-    /* min-width: calc( 5 * 50px + 6 * 0.5vw ); */
-    height: 30vw;
-    /* min-height: calc( 5 * 50px + 6 * 0.5vw ); */
+    /* 5x tile width + 10x margin */
+    width: calc( 5*5vw + 10*0.25vw); 
+    min-width: calc( 5 * 50px + 10 * 0.25vw );
+    max-width: calc( 5 * 75px + 10 * 0.25vw );
+
+    height: calc( 5*5vw + 10*0.25vw);
+    min-height: calc( 5 * 50px + 6 * 0.25vw );
+    max-height: calc( 5 * 75px + 10 * 0.25vw );
+
     justify-content: center;
     align-items: center;
     flex-flow: wrap;
-    border: 1px solid red;
+
+    /* background-color: rgba(212,212,212,0.5); */
+    /* padding: 0.5em; */
+    /* border-radius: 0.8em; */
+
+    /* testing */
+    /* border: 1px solid red; */
 }
 .row-separator {
-    /* not interfere with spacing */
     display: none; 
     width: 100%;
 }
@@ -52,7 +62,7 @@ html, body {
 
     background-color: mediumslateblue;
 
-    margin: 0.5vw;
+    margin: 0.25vw;
 }
 .picture-tile:nth-child(5n){
     break-after: always;
