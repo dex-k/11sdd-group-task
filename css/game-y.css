@@ -29,12 +29,12 @@ html, body {
 #picture-swap {
     /* 5x tile width + 10x margin */
     width: calc( 5*5vw + 10*0.25vw); 
-    min-width: calc( 5 * 50px + 10 * 0.25vw );
-    max-width: calc( 5 * 75px + 10 * 0.25vw );
+    /* min-width: calc( 5 * 50px + 10 * 0.25vw ); */
+    /* max-width: calc( 5 * 75px + 10 * 0.25vw ); */
 
     height: calc( 5*5vw + 10*0.25vw);
-    min-height: calc( 5 * 50px + 6 * 0.25vw );
-    max-height: calc( 5 * 75px + 10 * 0.25vw );
+    /* min-height: calc( 5 * 50px + 6 * 0.25vw ); */
+    /* max-height: calc( 5 * 75px + 10 * 0.25vw ); */
 
     justify-content: center;
     align-items: center;
@@ -55,13 +55,13 @@ html, body {
     width: 5vw;
 
     /*TODO: add these to media queries */
-    min-width: 50px;
-    max-width: 75px;
+    /* min-width: 50px; */
+    /* max-width: 75px; */
 
     height: 5vw;
     /*TODO: add these to media queries */
-    min-height: 50px;
-    max-height: 75px;
+    /* min-height: 50px; */
+    /* max-height: 75px; */
 
     background-color: mediumslateblue;
 
@@ -72,9 +72,9 @@ html, body {
 }
 
 .picture-tile {
-    background-image: url('../media/psych.png') ;
+    background-image: url('../media/innerspeaker.jpg') ;
     /* 5x tile width's + inner margins */
-    background-size: calc(5*5vw + 8*0.25vw) calc(5*5vw + 8*0.25vw)
+    background-size: calc(5*5vw + 8*0.25vw);
 }
 
 /* background top corner % coordinates
@@ -97,33 +97,33 @@ html, body {
 /* specific tile row/column background positions */
 /* rows / x-coords */
 .picture-tile[data-fluid-column="a"] { 
-    background-position-x: 0;
+    background-position-x: calc(27vw - (5vw + 0.5vw) * 0);
 }
 .picture-tile[data-fluid-column="b"] { 
-    background-position-x: 20.37%;
+    background-position-x: calc(27vw - (5vw + 0.5vw) * 1);
 }
 .picture-tile[data-fluid-column="c"] { 
-    background-position-x: 40.75%;
+    background-position-x: calc(27vw - (5vw + 0.5vw) * 2);
 }
 .picture-tile[data-fluid-column="d"] { 
-    background-position-x: 61.11%;
+    background-position-x: calc(27vw - (5vw + 0.5vw) * 3);
 }
 .picture-tile[data-fluid-column="e"] { 
-    background-position-x: 81.48%;
+    background-position-x: calc(27vw - (5vw + 0.5vw) * 4);
 }
 /* columns / y-coords */
 .picture-tile[data-fluid-row="1"] { 
-    background-position-y: 1;
+    background-position-y: calc(27vw - (5vw + 0.5vw) * 0);
 }
 .picture-tile[data-fluid-row="2"] { 
-    background-position-y: 20.37%;
+    background-position-y: calc(27vw - (5vw + 0.5vw) * 1);
 }
 .picture-tile[data-fluid-row="3"] { 
-    background-position-y: 40.75%;
+    background-position-y: calc(27vw - (5vw + 0.5vw) * 2);
 }
 .picture-tile[data-fluid-row="4"] { 
-    background-position-y: 61.11%;
+    background-position-y: calc(27vw - (5vw + 0.5vw) * 3);
 }
 .picture-tile[data-fluid-row="5"] { 
-    background-position-y: 81.48%;
+    background-position-y: calc(27vw - (5vw + 0.5vw) * 4);
 }
