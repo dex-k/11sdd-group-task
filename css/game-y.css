@@ -64,6 +64,10 @@ html, body {
     /* max-height: 75px; */
 
     background-color: mediumslateblue;
+    background-image: url('../media/innerspeaker.jpg') ;
+    /* 5x tile width's + inner margins */
+    background-size: calc(5*5vw + 8*0.25vw);
+
 
     margin: 0.25vw;
 }
@@ -71,11 +75,7 @@ html, body {
     break-after: always;
 }
 
-.picture-tile {
-    background-image: url('../media/innerspeaker.jpg') ;
-    /* 5x tile width's + inner margins */
-    background-size: calc(5*5vw + 8*0.25vw);
-}
+.picture-tile {}
 
 /* background top corner % coordinates
    calculated by percentage width of scaled tile + scaled margin
