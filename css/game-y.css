@@ -1,1 +1,59 @@
-/* CSS specific to Game Y */
+/* For GENERAL styling rules */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+.flex {
+    display: flex;
+}
+
+/*particles-js*/
+#particles-js {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: -1;
+    position: absolute;
+}
+
+/* CSS specific to Game Y */ 
+#content-wrapper {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid blue;
+}
+#picture-swap {
+    /* 5 time 5vw tile width, 2 times 0.5vw edge margin, 4 times 1vw separator (double margin) */
+    width: 30vw; 
+    /* min-width: calc( 5 * 50px + 6 * 0.5vw ); */
+    height: 30vw;
+    /* min-height: calc( 5 * 50px + 6 * 0.5vw ); */
+    justify-content: center;
+    align-items: center;
+    flex-flow: wrap;
+    border: 1px solid red;
+}
+.row-separator {
+    /* not interfere with spacing */
+    display: none; 
+    width: 100%;
+}
+.picture-tile {
+    width: 5vw;
+    min-width: 50px;
+    max-width: 75px;
+
+    height: 5vw;
+    min-height: 50px;
+    max-height: 75px;
+
+    background-color: mediumslateblue;
+
+    margin: 0.5vw;
+}
+.picture-tile:nth-child(5n){
+    break-after: always;
+}
