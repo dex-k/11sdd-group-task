@@ -72,7 +72,7 @@ html, body {
 }
 
 .picture-tile {
-    background-image: url('../media/animals.jpg') ;
+    background-image: url('../media/innerspeaker.jpg') ;
     /* 5x tile width's + inner margins */
     background-size: calc(5*5vw + 8*0.25vw);
 }
