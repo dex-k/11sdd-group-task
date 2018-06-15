@@ -108,13 +108,37 @@ var particlesConfig = {
       }
     },
     "retina_detect": true
-  }
-  //Anything that changes the html/page here
-  $(document).ready(function() {
-      console.log("Document ready");
-  
-      //sets up particle background ([id of particles div], [json config]
-      particlesJS('particles-js', particlesConfig);
-      console.log('particles.js loaded')
-      
-  });
+}
+
+//Anything that changes the html/page here
+$(document).ready(function() {
+console.log("Document ready");
+//sets up particle background ([id of particles div], [json config]
+particlesJS('particles-js', particlesConfig);
+console.log('particles.js loaded')
+
+//drag and drop
+var swapFluidData = function(fromID, toID) {
+    console.log('swapping ' + fromID + ' with ' + toID);
+  //add # to reference ID in jQuery
+  let fromID = '#' + fromID;
+  let toID = '#' + toID;
+  //set data to variables
+  let fromX = $(fromID).data('fluid-column');
+  let fromY = $(fromID).data('fluid-row');
+  let toX = $(toID).data('fluid-column');
+  let toY = $(toID).data('fluid-row');
+  //change element data
+  $(toID).data('fluid-column', fromX);
+    console.log('set ' + toID + ' fluid-column to ' + fromX);
+  $(toID).data('fluid-row', fromY);
+    console.log('set ' + toID + ' fluid-row to ' + fromY);
+  $(fromID).data('fluid-column', toX);
+    console.log('set ' + fromID + ' fluid-column to ' + toX);
+  $(fromID).data('fluid-row', toY);
+    console.log('set ' + fromID + ' fluid-row to ' + toY);
+}
+var drag = function(e) {
+}
+
+});
