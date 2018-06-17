@@ -110,35 +110,34 @@ var particlesConfig = {
     "retina_detect": true
 }
 
+
+//drag and drop
+var swapFluidData = function(fromID, toID) {
+  console.log('swapping ' + fromID + ' with ' + toID);
+  //add # to reference ID in jQuery
+  fromID = '#' + fromID;
+  toID = '#' + toID;
+  //set data to variables
+  let fromX = $(fromID).attr('data-fluid-column');
+  let fromY = $(fromID).attr('data-fluid-row');
+  let toX = $(toID).attr('data-fluid-column');
+  let toY = $(toID).attr('data-fluid-row');
+  //change element data
+  $(toID).attr('data-fluid-column', fromX);
+    console.log('set ' + toID + ' fluid-column to ' + fromX);
+  $(toID).attr('data-fluid-row', fromY);
+    console.log('set ' + toID + ' fluid-row to ' + fromY);
+  $(fromID).attr('data-fluid-column', toX);
+    console.log('set ' + fromID + ' fluid-column to ' + toX);
+  $(fromID).attr('data-fluid-row', toY);
+    console.log('set ' + fromID + ' fluid-row to ' + toY);
+}
+
 //Anything that changes the html/page here
 $(document).ready(function() {
 console.log("Document ready");
 //sets up particle background ([id of particles div], [json config]
 particlesJS('particles-js', particlesConfig);
 console.log('particles.js loaded')
-
-//drag and drop
-var swapFluidData = function(fromID, toID) {
-    console.log('swapping ' + fromID + ' with ' + toID);
-  //add # to reference ID in jQuery
-  fromID = '#' + fromID;
-  toID = '#' + toID;
-  //set data to variables
-  let fromX = $(fromID).data('fluidColumn');
-  let fromY = $(fromID).data('fluidRow');
-  let toX = $(toID).data('fluidColumn');
-  let toY = $(toID).data('fluidRow');
-  //change element data
-  $(toID).data('fluidColumn', fromX);
-    console.log('set ' + toID + ' fluid-column to ' + fromX);
-  $(toID).data('fluidRow', fromY);
-    console.log('set ' + toID + ' fluid-row to ' + fromY);
-  $(fromID).data('fluidColumn', toX);
-    console.log('set ' + fromID + ' fluid-column to ' + toX);
-  $(fromID).data('fluidRow', toY);
-    console.log('set ' + fromID + ' fluid-row to ' + toY);
-}
-var drag = function(e) {
-}
-
+ 
 });
