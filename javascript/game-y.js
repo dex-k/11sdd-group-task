@@ -121,21 +121,21 @@ console.log('particles.js loaded')
 var swapFluidData = function(fromID, toID) {
     console.log('swapping ' + fromID + ' with ' + toID);
   //add # to reference ID in jQuery
-  let fromID = '#' + fromID;
-  let toID = '#' + toID;
+  fromID = '#' + fromID;
+  toID = '#' + toID;
   //set data to variables
-  let fromX = $(fromID).data('fluid-column');
-  let fromY = $(fromID).data('fluid-row');
-  let toX = $(toID).data('fluid-column');
-  let toY = $(toID).data('fluid-row');
+  let fromX = $(fromID).data('fluidColumn');
+  let fromY = $(fromID).data('fluidRow');
+  let toX = $(toID).data('fluidColumn');
+  let toY = $(toID).data('fluidRow');
   //change element data
-  $(toID).data('fluid-column', fromX);
+  $(toID).data('fluidColumn', fromX);
     console.log('set ' + toID + ' fluid-column to ' + fromX);
-  $(toID).data('fluid-row', fromY);
+  $(toID).data('fluidRow', fromY);
     console.log('set ' + toID + ' fluid-row to ' + fromY);
-  $(fromID).data('fluid-column', toX);
+  $(fromID).data('fluidColumn', toX);
     console.log('set ' + fromID + ' fluid-column to ' + toX);
-  $(fromID).data('fluid-row', toY);
+  $(fromID).data('fluidRow', toY);
     console.log('set ' + fromID + ' fluid-row to ' + toY);
 }
 var drag = function(e) {
