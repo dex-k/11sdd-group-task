@@ -112,25 +112,39 @@ var particlesConfig = {
 
 
 //drag and drop
+//fromID and toID are strings without leading #
 var swapFluidData = function(fromID, toID) {
-  console.log('swapping ' + fromID + ' with ' + toID);
-  //add # to reference ID in jQuery
-  fromID = '#' + fromID;
-  toID = '#' + toID;
+    console.log('swapping fluid data of' + fromID + ' with ' + toID);
+  
   //set data to variables
-  let fromX = $(fromID).attr('data-fluid-column');
-  let fromY = $(fromID).attr('data-fluid-row');
-  let toX = $(toID).attr('data-fluid-column');
-  let toY = $(toID).attr('data-fluid-row');
+  let fromX = $('#' + fromID).attr('data-fluid-column');
+  let fromY = $('#' + fromID).attr('data-fluid-row');
+  let toX = $('#' + toID).attr('data-fluid-column');
+  let toY = $('#' + toID).attr('data-fluid-row');
+  
   //change element data
-  $(toID).attr('data-fluid-column', fromX);
+  $('#' + toID).attr('data-fluid-column', fromX);
     console.log('set ' + toID + ' fluid-column to ' + fromX);
-  $(toID).attr('data-fluid-row', fromY);
+  $('#' + toID).attr('data-fluid-row', fromY);
     console.log('set ' + toID + ' fluid-row to ' + fromY);
-  $(fromID).attr('data-fluid-column', toX);
+  $('#' + fromID).attr('data-fluid-column', toX);
     console.log('set ' + fromID + ' fluid-column to ' + toX);
-  $(fromID).attr('data-fluid-row', toY);
+  $('#' + fromID).attr('data-fluid-row', toY);
     console.log('set ' + fromID + ' fluid-row to ' + toY);
+  
+    //swap element ID's
+    swapID(fromID, toID)
+;}
+
+//fromID and toID are strings without leading #
+var swapID = function(firstID, secondID) {
+    console.log('swapping ID\'s of ' + firstID + ' and ' + secondID);
+  $('#' + secondID).attr('id', '');
+    console.log('removed ID of ' + secondID)
+  $('#' + firstID).attr('id', secondID);
+    console.log('set ID of' + firstID + ' to ' + secondID)
+  $('#' + secondID).attr('id', firstID);
+  console.log('set ID of' + secondID + ' to ' + firstID)
 }
 
 //Anything that changes the html/page here
