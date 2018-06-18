@@ -131,9 +131,6 @@ var swapFluidData = function(fromID, toID) {
     console.log('set ' + fromID + ' fluid-column to ' + toX);
   $('#' + fromID).attr('data-fluid-row', toY);
     console.log('set ' + fromID + ' fluid-row to ' + toY);
-  
-    //swap element ID's
-    swapID(fromID, toID)
 ;}
 
 //fromID and toID are strings without leading #
@@ -142,11 +139,47 @@ var swapID = function(firstID, secondID) {
   $('#' + secondID).attr('id', '');
     console.log('removed ID of ' + secondID)
   $('#' + firstID).attr('id', secondID);
-    console.log('set ID of' + firstID + ' to ' + secondID)
+    console.log('set ID of ' + firstID + ' to ' + secondID)
   $('#' + secondID).attr('id', firstID);
-  console.log('set ID of' + secondID + ' to ' + firstID)
+  console.log('set ID of ' + secondID + ' to ' + firstID)
 }
 
+var swapTiles = function(tile1, tile2) {
+  swapFluidData(tile1, tile2);
+  swapID(tile1, tile2);
+}
+
+/**
+ * Randomize array element order in-place.
+ * Using Durstenfeld shuffle algorithm.
+ * https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+ */
+var shuffleArray = function(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+  }
+}
+
+var scramble = function() {
+  //ordered array of all tiles
+  let fromIDArray = ['a1', 'a2', 'a3', 'a4', 'a5',
+                   'b1', 'b2', 'b3', 'b4', 'b5',
+                   'c1', 'c2', 'c3', 'c4', 'c5',
+                   'd1', 'd2', 'd3', 'd4', 'd5',
+                   'e1', 'e2', 'e3', 'e4', 'e5'];
+  //copy the ordered array
+  let toIDArray = fromIDArray;
+  //randomise the second array
+  shuffleArray(toIDArray);
+  //set each tile in the first array to the tile in the second
+  //i.e. randomise the order
+  for (i = 0; i < fromIDArray.length; i++) {
+    swapTiles(fromIDArray[i], toIDArray[i]);
+  }
+}
 //Anything that changes the html/page here
 $(document).ready(function() {
 console.log("Document ready");
