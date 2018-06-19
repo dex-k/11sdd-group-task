@@ -114,7 +114,7 @@ var particlesConfig = {
 //drag and drop
 //fromID and toID are strings without leading #
 var swapFluidData = function(fromID, toID) {
-    console.log('swapping fluid data of' + fromID + ' with ' + toID);
+    console.log('swapping fluid data of ' + fromID + ' with ' + toID);
   
   //set data to variables
   let fromX = $('#' + fromID).attr('data-fluid-column');
@@ -124,29 +124,29 @@ var swapFluidData = function(fromID, toID) {
   
   //change element data
   $('#' + toID).attr('data-fluid-column', fromX);
-    console.log('set ' + toID + ' fluid-column to ' + fromX);
+    // console.log('set ' + toID + ' fluid-column to ' + fromX);
   $('#' + toID).attr('data-fluid-row', fromY);
-    console.log('set ' + toID + ' fluid-row to ' + fromY);
+    // console.log('set ' + toID + ' fluid-row to ' + fromY);
   $('#' + fromID).attr('data-fluid-column', toX);
-    console.log('set ' + fromID + ' fluid-column to ' + toX);
+    // console.log('set ' + fromID + ' fluid-column to ' + toX);
   $('#' + fromID).attr('data-fluid-row', toY);
-    console.log('set ' + fromID + ' fluid-row to ' + toY);
+    // console.log('set ' + fromID + ' fluid-row to ' + toY);
 ;}
 
 //fromID and toID are strings without leading #
 var swapID = function(firstID, secondID) {
     console.log('swapping ID\'s of ' + firstID + ' and ' + secondID);
   $('#' + secondID).attr('id', '');
-    console.log('removed ID of ' + secondID)
+    // console.log('removed ID of ' + secondID)
   $('#' + firstID).attr('id', secondID);
-    console.log('set ID of ' + firstID + ' to ' + secondID)
+    // console.log('set ID of ' + firstID + ' to ' + secondID)
   $('#' + secondID).attr('id', firstID);
-  console.log('set ID of ' + secondID + ' to ' + firstID)
+  // console.log('set ID of ' + secondID + ' to ' + firstID)
 }
 
-var swapTiles = function(tile1, tile2) {
-  swapFluidData(tile1, tile2);
-  swapID(tile1, tile2);
+var swapTiles = function(fromTile, toTile) {
+  swapFluidData(fromTile, toTile);
+  swapID(fromTile, toTile);
 }
 
 /**
@@ -165,21 +165,28 @@ var shuffleArray = function(array) {
 
 var scramble = function() {
   //ordered array of all tiles
-  let fromIDArray = ['a1', 'a2', 'a3', 'a4', 'a5',
+  var fromIDArray = ['a1', 'a2', 'a3', 'a4', 'a5',
                    'b1', 'b2', 'b3', 'b4', 'b5',
                    'c1', 'c2', 'c3', 'c4', 'c5',
                    'd1', 'd2', 'd3', 'd4', 'd5',
                    'e1', 'e2', 'e3', 'e4', 'e5'];
   //copy the ordered array
-  let toIDArray = fromIDArray;
+  var toIDArray = ['a1', 'a2', 'a3', 'a4', 'a5',
+                   'b1', 'b2', 'b3', 'b4', 'b5',
+                   'c1', 'c2', 'c3', 'c4', 'c5',
+                   'd1', 'd2', 'd3', 'd4', 'd5',
+                   'e1', 'e2', 'e3', 'e4', 'e5'];
+    console.log(toIDArray);
   //randomise the second array
   shuffleArray(toIDArray);
+    console.log(toIDArray);
   //set each tile in the first array to the tile in the second
   //i.e. randomise the order
   for (i = 0; i < fromIDArray.length; i++) {
     swapTiles(fromIDArray[i], toIDArray[i]);
   }
-}
+};
+
 //Anything that changes the html/page here
 $(document).ready(function() {
 console.log("Document ready");
