@@ -187,11 +187,30 @@ var scramble = function() {
   }
 };
 
+//drag and drop functions/variables
+var dragTiles = document.getElementsByClassName("picture-tile");
+var allowDrop = function(e) {
+  e.preventDefault();
+}
+var drag = function(e) {
+    console.log('drag start ' + e)
+  e.dataTransfer.setData('text', e.target.id)
+}
+var drop = function(e) {
+    console.log('drop' + e);
+  var draggedID = e.dataTransfer.getData("text");
+  var droppedID = e.target.id;
+  console.log("dragged: " + draggedID + ", dropped: " + droppedID);
+}
 //Anything that changes the html/page here
 $(document).ready(function() {
-console.log("Document ready");
-//sets up particle background ([id of particles div], [json config]
-particlesJS('particles-js', particlesConfig);
-console.log('particles.js loaded')
- 
+  console.log("Document ready");
+
+  //sets up particle background ([id of particles div], [json config]
+  particlesJS('particles-js', particlesConfig);
+  console.log('particles.js loaded')
+  
+  $('.picture-tile').on("dragstart", drag())
+                    .on("dragover", allowDrop())
+                    .on("drop", drop());
 });
