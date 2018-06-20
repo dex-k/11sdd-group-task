@@ -135,19 +135,19 @@ var swapFluidData = function(fromID, toID) {
 
 //fromID and toID are strings without leading #
 var swapID = function(firstID, secondID) {
-    console.log('swapping ID\'s of ' + firstID + ' and ' + secondID);
+    // console.log('swapping ID\'s of ' + firstID + ' and ' + secondID);
   $('#' + secondID).removeProp('id');
     // console.log('removed ID of ' + secondID)
   $('#' + firstID).prop('id', secondID);
-    console.log('set ID of ' + firstID + ' to ' + secondID)
+    // console.log('set ID of ' + firstID + ' to ' + secondID)
   $('#' + secondID).prop('id', firstID);
-  console.log('set ID of ' + secondID + ' to ' + firstID)
+    // console.log('set ID of ' + secondID + ' to ' + firstID)
   //SUMARRY
     console.log(
       "(" + 
-      firstID + " => " + $('#' + firstID).prop('id') 
+      firstID + " => " + secondID 
       + ", " +  
-      secondID + " => " + $('#' + secondID).prop('id') 
+      secondID + " => " + firstID 
       + ")"
     )
 }
@@ -205,16 +205,18 @@ var allowDrop = function(e) {
   e.preventDefault();
 }
 var drag = function(e) {
-    console.log('start drag on tile ' + e.target.id)
+    // console.log('start drag on tile ' + e.target.id)
   e.originalEvent.dataTransfer.setData("text", e.target.id)
+  // $('#' + e.target.id).css('visibility', 'hidden'); NOT WORKING
 }
 var drop = function(e) {
-    console.log('droped onto ' + e.target.id);
+    // console.log('droped onto ' + e.target.id);
   var dragged = e.originalEvent.dataTransfer.getData("text");
   var dropped = e.target.id;
   console.log("(dragged " + dragged + ", onto " + dropped + ")");
 
   //THE MAGIC HAPPENS HERE
+  // $('#' + dragged).css('visibility', 'auto'); NOT WORKING
   swapTiles(dragged, dropped)
 }
 //Anything that changes the html/page here
