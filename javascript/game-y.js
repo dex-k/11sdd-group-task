@@ -200,14 +200,48 @@ var scramble = function() {
 
 //drag and drop functions/variables
 //https://jsfiddle.net/Lg5QH/1/
-var dragTiles = document.getElementsByClassName("picture-tile");
+//object to hold drag and drop functions for organisation
+var tile = {
+  allowDrop: function(e) {
+    e.preventDefault();
+  },
+  drag: function(e) {
+      // console.log('start drag on tile ' + e.target.id)
+    e.originalEvent.dataTransfer.setData("text", e.target.id)
+    //timeout function to let dragged tile be invisible 
+    //while drag is taking place. Has to be on 1ms timout
+    //or else the styling will be applied to the dragged 
+    //element
+    setTimeout(()=>{
+     $('#' + e.target.id).css('visibility', 'hidden'); 
+    }, 1)
+  },
+  drop: function(e) {
+      // console.log('droped onto ' + e.target.id);
+    var dragged = e.originalEvent.dataTransfer.getData("text");
+    var dropped = e.target.id;
+    console.log("(dragged " + dragged + ", onto " + dropped + ")");
+
+    $('#' + dragged).css('visibility', '');
+    //THE MAGIC HAPPENS HERE
+    swapTiles(dragged, dropped)
+  },
+  dragEnd: function(e) {
+    // var dragged = e.originalEvent.dataTransfer.getData("text");
+    $('#' + e.target.id).css('visibility', '');
+    e.originalEvent.dataTransfer.clearData();
+  }
+}
 var allowDrop = function(e) {
   e.preventDefault();
 }
 var drag = function(e) {
     // console.log('start drag on tile ' + e.target.id)
   e.originalEvent.dataTransfer.setData("text", e.target.id)
-  // $('#' + e.target.id).css('visibility', 'hidden'); NOT WORKING
+  //NOT WORKING
+  setTimeout(()=>{
+    $('#' + e.target.id).css('visibility', 'hidden'); 
+  }, 1)
 }
 var drop = function(e) {
     // console.log('droped onto ' + e.target.id);
@@ -216,8 +250,13 @@ var drop = function(e) {
   console.log("(dragged " + dragged + ", onto " + dropped + ")");
 
   //THE MAGIC HAPPENS HERE
-  // $('#' + dragged).css('visibility', 'auto'); NOT WORKING
+  /* NOT WORKING*/ $('#' + dragged).css('visibility', '');
   swapTiles(dragged, dropped)
+}
+var dragEnd = function(e) {
+  // var dragged = e.originalEvent.dataTransfer.getData("text");
+  $('#' + e.target.id).css('visibility', '');
+  e.originalEvent.dataTransfer.clearData();
 }
 //Anything that changes the html/page here
 $(document).ready(function() {
@@ -227,7 +266,8 @@ $(document).ready(function() {
   particlesJS('particles-js', particlesConfig);
   console.log('particles.js loaded')
   
-  $('.picture-tile').on("dragstart", drag)
-                    .on("dragover", allowDrop)
-                    .on("drop", drop);
+  $('.picture-tile').on("dragstart", tile.drag)
+                    .on("dragover", tile.allowDrop)
+                    .on("drop", tile.drop)
+                    .on("dragend", tile.dragEnd);
 });
