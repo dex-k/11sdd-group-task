@@ -136,17 +136,28 @@ var swapFluidData = function(fromID, toID) {
 //fromID and toID are strings without leading #
 var swapID = function(firstID, secondID) {
     console.log('swapping ID\'s of ' + firstID + ' and ' + secondID);
-  $('#' + secondID).attr('id', '');
+  $('#' + secondID).removeProp('id');
     // console.log('removed ID of ' + secondID)
-  $('#' + firstID).attr('id', secondID);
-    // console.log('set ID of ' + firstID + ' to ' + secondID)
-  $('#' + secondID).attr('id', firstID);
-  // console.log('set ID of ' + secondID + ' to ' + firstID)
+  $('#' + firstID).prop('id', secondID);
+    console.log('set ID of ' + firstID + ' to ' + secondID)
+  $('#' + secondID).prop('id', firstID);
+  console.log('set ID of ' + secondID + ' to ' + firstID)
+  //SUMARRY
+    console.log(
+      "(" + 
+      firstID + " => " + $('#' + firstID).prop('id') 
+      + ", " +  
+      secondID + " => " + $('#' + secondID).prop('id') 
+      + ")"
+    )
 }
 
 var swapTiles = function(fromTile, toTile) {
-  swapFluidData(fromTile, toTile);
-  swapID(fromTile, toTile);
+  //variables to stop any refrencing errors? maybe this will help?
+  var a = fromTile,
+      b = toTile;
+  swapFluidData(a, b);
+  swapID(a, b);
 }
 
 /**
@@ -188,19 +199,23 @@ var scramble = function() {
 };
 
 //drag and drop functions/variables
+//https://jsfiddle.net/Lg5QH/1/
 var dragTiles = document.getElementsByClassName("picture-tile");
 var allowDrop = function(e) {
   e.preventDefault();
 }
 var drag = function(e) {
     console.log('start drag on tile ' + e.target.id)
-  e.originalEvent.dataTransfer.setData("Text", e.target.id)
+  e.originalEvent.dataTransfer.setData("text", e.target.id)
 }
 var drop = function(e) {
     console.log('droped onto ' + e.target.id);
-  var draggedID = e.originalEvent.dataTransfer.getData("Text");
-  var droppedID = e.target.id;
-  console.log("dragged " + draggedID + ", onto " + droppedID);
+  var dragged = e.originalEvent.dataTransfer.getData("text");
+  var dropped = e.target.id;
+  console.log("(dragged " + dragged + ", onto " + dropped + ")");
+
+  //THE MAGIC HAPPENS HERE
+  swapTiles(dragged, dropped)
 }
 //Anything that changes the html/page here
 $(document).ready(function() {
