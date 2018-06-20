@@ -114,7 +114,7 @@ var particlesConfig = {
 //drag and drop
 //fromID and toID are strings without leading #
 var swapFluidData = function(fromID, toID) {
-    console.log('swapping fluid data of ' + fromID + ' with ' + toID);
+    // console.log('swapping fluid data of ' + fromID + ' with ' + toID);
   
   //set data to variables
   let fromX = $('#' + fromID).attr('data-fluid-column');
@@ -143,13 +143,7 @@ var swapID = function(firstID, secondID) {
   $('#' + secondID).prop('id', firstID);
     // console.log('set ID of ' + secondID + ' to ' + firstID)
   //SUMARRY
-    console.log(
-      "(" + 
-      firstID + " => " + secondID 
-      + ", " +  
-      secondID + " => " + firstID 
-      + ")"
-    )
+    console.log("(" + firstID + " <=> " + secondID + ")")
 }
 
 var swapTiles = function(fromTile, toTile) {
@@ -187,15 +181,17 @@ var scramble = function() {
                    'c1', 'c2', 'c3', 'c4', 'c5',
                    'd1', 'd2', 'd3', 'd4', 'd5',
                    'e1', 'e2', 'e3', 'e4', 'e5'];
-    console.log(toIDArray);
+    // console.log(toIDArray);
   //randomise the second array
   shuffleArray(toIDArray);
-    console.log(toIDArray);
+    // console.log(toIDArray);
   //set each tile in the first array to the tile in the second
   //i.e. randomise the order
   for (i = 0; i < fromIDArray.length; i++) {
     swapTiles(fromIDArray[i], toIDArray[i]);
+    shuffleArray(toIDArray);
   }
+  console.log('scrambled');
 };
 
 //drag and drop functions/variables
@@ -234,12 +230,16 @@ var tile = {
 }
 //Anything that changes the html/page here
 $(document).ready(function() {
-  console.log("Document ready");
-
+  console.log("Document ready ");
   //sets up particle background ([id of particles div], [json config]
   particlesJS('particles-js', particlesConfig);
   console.log('particles.js loaded')
-  
+  $(document).keypress((k)=>console.log('keypress', k.which));
+  $(document).keypress(function(key) {
+    if(key.which == 115) {
+      scramble();
+    }
+  });
   //add drag event handlers
   $('.picture-tile').on("dragstart", tile.drag)
                     .on("dragover", tile.allowDrop)
