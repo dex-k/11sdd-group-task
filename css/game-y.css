@@ -37,7 +37,8 @@ html, body {
     /* max-height: calc( 5 * 75px + 10 * 0.25vw ); */
 
     justify-content: center;
-    align-items: center;
+    align-content: center;
+    /* align-items: center; */
     flex-flow: wrap;
 
     /* background-color: rgba(212,212,212,0.5); */
@@ -45,12 +46,13 @@ html, body {
     /* border-radius: 0.8em; */
 
     /* testing */
-    /* border: 1px solid red; */
+    border: 1px solid red;
 }
-.row-separator {
+/* .row-separator {
     display: none; 
     width: 100%;
-}
+    height: 0;
+} */
 .picture-tile {
     width: 5vw;
 
@@ -66,6 +68,12 @@ html, body {
     background-color: mediumslateblue;
 
     margin: 0.25vw;
+
+    transition-property: margin;
+    transition-duration: 1s;
+}
+.no-margin { 
+    margin: 0;
 }
 .picture-tile:nth-child(5n){
     break-after: always;
