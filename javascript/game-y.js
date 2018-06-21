@@ -145,14 +145,14 @@ var swapID = function(firstID, secondID) {
   //SUMARRY
     console.log("(" + firstID + " <=> " + secondID + ")")
 }
-
-var swapTiles = function(fromTile, toTile) {
-  //variables to stop any refrencing errors? maybe this will help?
-  var a = fromTile,
-      b = toTile;
-  swapFluidData(a, b);
-  swapID(a, b);
-}
+// removed 21/06/18
+// var swapTiles = function(fromTile, toTile) {
+//   //variables to stop any refrencing errors? maybe this will help?
+//   var a = fromTile,
+//       b = toTile;
+//   swapID(a, b);
+//   swapFluidData(a, b);
+// }
 
 /**
  * Randomize array element order in-place.
@@ -171,10 +171,10 @@ var shuffleArray = function(array) {
 var scramble = function() {
   //ordered array of all tiles
   var fromIDArray = ['a1', 'a2', 'a3', 'a4', 'a5',
-                   'b1', 'b2', 'b3', 'b4', 'b5',
-                   'c1', 'c2', 'c3', 'c4', 'c5',
-                   'd1', 'd2', 'd3', 'd4', 'd5',
-                   'e1', 'e2', 'e3', 'e4', 'e5'];
+                     'b1', 'b2', 'b3', 'b4', 'b5',
+                    'c1', 'c2', 'c3', 'c4', 'c5',
+                    'd1', 'd2', 'd3', 'd4', 'd5',
+                    'e1', 'e2', 'e3', 'e4', 'e5'];
   //copy the ordered array
   var toIDArray = ['a1', 'a2', 'a3', 'a4', 'a5',
                    'b1', 'b2', 'b3', 'b4', 'b5',
@@ -188,12 +188,23 @@ var scramble = function() {
   //set each tile in the first array to the tile in the second
   //i.e. randomise the order
   for (i = 0; i < fromIDArray.length; i++) {
-    swapTiles(fromIDArray[i], toIDArray[i]);
-    shuffleArray(toIDArray);
+    swapFluidData(fromIDArray[i], toIDArray[i]);
   }
   console.log('scrambled');
 };
 
+var reset = function() {
+  var currentFluidArray = document.getElementsByClassName('picture-tile')
+  for (i = 0; i < currentFluidArray.length; i++){
+    let id = $(currentFluidArray[i]).prop('id');
+    console.log('id: ' + id)
+    let column = id[0];
+    let row = id[1];
+    console.log('column: ' + column + ', row: ' + row)
+    $(currentFluidArray[i]).attr('data-fluid-column', column);
+    $(currentFluidArray[i]).attr('data-fluid-row', row);
+  }
+}
 //drag and drop functions/variables
 //https://jsfiddle.net/Lg5QH/1/
 //object to hold drag and drop functions for organisation
