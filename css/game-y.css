@@ -71,6 +71,10 @@ html, body {
     /* max-height: 75px; */
 
     background-color: mediumslateblue;
+    background-image: url('../media/innerspeaker.jpg') ;
+    /* 5x tile width's + inner margins */
+    background-size: calc(5*5vw + 8*0.25vw);
+
 
     margin: 0.25vw;
 
@@ -82,12 +86,6 @@ html, body {
 }
 .picture-tile:nth-child(5n){
     break-after: always;
-}
-
-.picture-tile {
-    background-image: url('../media/animals.jpg') ;
-    /* 5x tile width's + inner margins */
-    background-size: calc(5*5vw + 8*0.25vw);
 }
 
 /* background top corner % coordinates
