@@ -70,7 +70,7 @@ html, body {
     margin: 0.25vw;
 
     transition-property: margin;
-    transition-duration: 1s;
+    transition-duration: 2s;
 }
 .no-margin { 
     margin: 0;

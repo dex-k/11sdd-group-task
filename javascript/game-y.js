@@ -243,6 +243,15 @@ var tile = {
     e.originalEvent.dataTransfer.clearData();
   }
 }
+
+var toggleMargin = function() {
+  if ( $('.picture-tile').hasClass('no-margin') ) {
+    $('.picture-tile').removeClass('no-margin')
+  } else {
+    $('.picture-tile').addClass('no-margin')
+  }
+}
+
 //Anything that changes the html/page here
 $(document).ready(function() {
   console.log("Document ready ");
@@ -252,12 +261,14 @@ $(document).ready(function() {
   $(document).keypress((k)=>console.log('keypress', k.which));
   $(document).keypress(function(key) {
     switch (key.which) {
-      case 115:
+      case 115: //s
         scramble()
         break;
-      case 114:
+      case 114: //r
         reset()
         break;
+      case 109: //m
+        toggleMargin();
     }
   });
   //add drag event handlers
