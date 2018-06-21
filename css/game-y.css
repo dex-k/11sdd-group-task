@@ -26,6 +26,7 @@ html, body {
     /* testing */
     /* border: 1px solid blue; */
 }
+
 #picture-swap {
     /* 5x tile width + 10x margin */
     width: calc( 5*5vw + 10*0.25vw); 
@@ -84,6 +85,16 @@ html, body {
 .no-margin { 
     margin: 0;
 }
+
+body:before {
+    content: "press:\A 's' to scramble\A 'r' to reset\A 'm' to merge/unmerge\A 'b' to blur";
+    white-space: pre;
+    position: absolute;
+    left: .5em;
+    top: .5em;
+    color: red;
+}
+
 .picture-tile:nth-child(5n){
     break-after: always;
 }
