@@ -45,8 +45,13 @@ html, body {
     /* padding: 0.5em; */
     /* border-radius: 0.8em; */
 
+    transition-property: filter;
+    transition-duration: 2s;
     /* testing */
-    border: 1px solid red;
+    /* border: 1px solid red; */
+}
+.blur {
+    filter: blur(5px);
 }
 /* .row-separator {
     display: none; 

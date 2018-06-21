@@ -252,6 +252,14 @@ var toggleMargin = function() {
   }
 }
 
+var toggleBlur = function() {
+  if ( $('#picture-swap').hasClass('blur') ) {
+    $('#picture-swap').removeClass('blur')
+  } else {
+    $('#picture-swap').addClass('blur')
+  }
+}
+
 //Anything that changes the html/page here
 $(document).ready(function() {
   console.log("Document ready ");
@@ -269,6 +277,9 @@ $(document).ready(function() {
         break;
       case 109: //m
         toggleMargin();
+        break;
+      case 98:
+        toggleBlur();
     }
   });
   //add drag event handlers
