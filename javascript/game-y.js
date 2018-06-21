@@ -133,6 +133,8 @@ var swapFluidData = function(fromID, toID) {
     // console.log('set ' + fromID + ' fluid-row to ' + toY);
 ;}
 
+/////////////////////////////////////////////
+/*REMOVED 21-06-18 
 //fromID and toID are strings without leading #
 var swapID = function(firstID, secondID) {
     // console.log('swapping ID\'s of ' + firstID + ' and ' + secondID);
@@ -144,15 +146,17 @@ var swapID = function(firstID, secondID) {
     // console.log('set ID of ' + secondID + ' to ' + firstID)
   //SUMARRY
     console.log("(" + firstID + " <=> " + secondID + ")")
-}
-// removed 21/06/18
-// var swapTiles = function(fromTile, toTile) {
-//   //variables to stop any refrencing errors? maybe this will help?
-//   var a = fromTile,
-//       b = toTile;
-//   swapID(a, b);
-//   swapFluidData(a, b);
-// }
+}//*/
+
+/////////////////////////////////////////////
+/* removed 21/06/18
+var swapTiles = function(fromTile, toTile) {
+  //variables to stop any refrencing errors? maybe this will help?
+  var a = fromTile,
+      b = toTile;
+  swapID(a, b);
+  swapFluidData(a, b);
+}//*/
 
 /**
  * Randomize array element order in-place.
@@ -231,7 +235,7 @@ var tile = {
 
     $('#' + dragged).css('visibility', '');
     //THE MAGIC HAPPENS HERE
-    swapTiles(dragged, dropped)
+    swapFluidData(dragged, dropped)
   },
   dragEnd: function(e) {
     // var dragged = e.originalEvent.dataTransfer.getData("text");
@@ -247,8 +251,13 @@ $(document).ready(function() {
   console.log('particles.js loaded')
   $(document).keypress((k)=>console.log('keypress', k.which));
   $(document).keypress(function(key) {
-    if(key.which == 115) {
-      scramble();
+    switch (key.which) {
+      case 115:
+        scramble()
+        break;
+      case 114:
+        reset()
+        break;
     }
   });
   //add drag event handlers
