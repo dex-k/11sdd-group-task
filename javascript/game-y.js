@@ -260,12 +260,29 @@ var toggleBlur = function() {
   }
 }
 
+var checkDone = function() {
+  var tileArray = $('picture-tile')
+  var fluidArray = [];
+  var trueArray = [];
+  for (i = 0; i < tileArray.length; i++) {
+    var fluidColumn = tileArray[i].attr('data-fluid-column');
+    var fluidRow = tileArray[i].attr('data-fluid-row');
+    var trueColumn = tileArray[i].attr('data-true-column');
+    var trueRow = tileArray[i].attr('data-true-row');
+    var fluidData = fluidColumn + fluidRow;
+    var trueData = trueColumn + trueRow;
+    fluidArray.push(fluidData);
+    trueArray.push(trueData);
+  }
+  return (fluidArray == trueArray);
+}
+
 //Anything that changes the html/page here
 $(document).ready(function() {
   console.log("Document ready ");
   //sets up particle background ([id of particles div], [json config]
   particlesJS('particles-js', particlesConfig);
-  console.log('particles.js loaded')
+  console.log('particles-js loaded')
   $(document).keypress((k)=>console.log('keypress', k.which));
   $(document).keypress(function(key) {
     switch (key.which) {
@@ -278,7 +295,7 @@ $(document).ready(function() {
       case 109: //m
         toggleMargin();
         break;
-      case 98:
+      case 98:  //b
         toggleBlur();
     }
   });
