@@ -78,9 +78,7 @@ html, body {
 
 
     margin: 0.25vw;
-
-    transition-property: margin;
-    transition-duration: 2s;
+    transition: margin 2s, background-position .5s;
 }
 .no-margin { 
     margin: 0;
