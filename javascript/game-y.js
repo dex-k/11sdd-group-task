@@ -236,6 +236,10 @@ var tile = {
     $('#' + dragged).css('visibility', '');
     //THE MAGIC HAPPENS HERE
     swapFluidData(dragged, dropped)
+
+    //check if done when dropped
+    var state = checkDone();
+    doneEvents(state);
   },
   dragEnd: function(e) {
     // var dragged = e.originalEvent.dataTransfer.getData("text");
@@ -261,22 +265,80 @@ var toggleBlur = function() {
 }
 
 var checkDone = function() {
-  var tileArray = $('picture-tile')
+  var tileArray = document.getElementsByClassName('picture-tile');
   var fluidArray = [];
   var trueArray = [];
+  //initialise same variable
+  var same = true;
   for (i = 0; i < tileArray.length; i++) {
-    var fluidColumn = tileArray[i].attr('data-fluid-column');
-    var fluidRow = tileArray[i].attr('data-fluid-row');
-    var trueColumn = tileArray[i].attr('data-true-column');
-    var trueRow = tileArray[i].attr('data-true-row');
+    var fluidColumn = $(tileArray[i]).attr('data-fluid-column');
+    var fluidRow = $(tileArray[i]).attr('data-fluid-row');
+    var trueColumn = $(tileArray[i]).attr('data-true-column');
+    var trueRow = $(tileArray[i]).attr('data-true-row');
     var fluidData = fluidColumn + fluidRow;
     var trueData = trueColumn + trueRow;
+      // console.log("fluid, true = " + fluidData + ' ,' + trueData)
     fluidArray.push(fluidData);
     trueArray.push(trueData);
   }
-  return (fluidArray == trueArray);
+    // console.log('fluid ' + fluidArray);
+    // console.log('true ' + trueArray)
+  for (i = 0; i < tileArray.length; i++) {
+    var check = (fluidArray[i] == trueArray[i]);
+      // console.log(check)
+    //boolean multiplication u 
+    same = same && check;
+  }
+  return (same);
 }
 
+var doneEvents = function(state) {
+  if (state) {
+    //done
+    console.log("done");
+    toggleBlur();
+    toggleMargin();
+  } else {
+    //not done
+  }
+}
+var timer = {
+  startTime: 0,
+  currentTime: 0,
+  endTime: 0,
+  timeElapsed: 0,
+  secondsElapsed: 0,
+  start: function(){
+      console.log('start timer');
+    // if(!timer.startTime){return}; //exit if timer already going
+      console.log('passed check');
+    timer.startTime = Date.now();
+    $('#time').text(timer.secondsElapsed);
+    countdown = setInterval( function() {
+      timer.timeElapsed = Date.now() - timer.startTime;
+      timer.secondsElapsed = Math.floor( timer.timeElapsed / 1000 );
+      $('#time').text(timer.secondsElapsed)
+        console.log(timer.secondsElapsed + 's');
+    }, 1000)
+  },
+  stop: function() {
+    clearInterval(countdown);
+    timer.endTime = Date.now();
+      console.log('stop timer')
+    timer.timeElapsed = timer.endTime - timer.startTime;
+    timer.secondsElapsed = Math.floor( timer.timeElapsed / 1000 );
+    $('#time').text(timer.secondsElapsed)
+      console.log("Total: " + timer.secondsElapsed + "s");
+  },
+  reset: function() {
+    timer.startTime = 0;
+    timer.currentTime = 0;
+    timer.endTime = 0;
+    timer.timeElapsed = 0;
+    timer.secondsElapsed = 0;
+    $('#time').text(timer.secondsElapsed);
+  }
+}
 //Anything that changes the html/page here
 $(document).ready(function() {
   console.log("Document ready ");
@@ -295,8 +357,14 @@ $(document).ready(function() {
       case 109: //m
         toggleMargin();
         break;
-      case 98:  //b
+      case 98: //b
         toggleBlur();
+      case 99: //c
+        checkDone();
+      case 116: //t
+        timer.start();
+      case 101: //e
+        timer.stop();
     }
   });
   //add drag event handlers
