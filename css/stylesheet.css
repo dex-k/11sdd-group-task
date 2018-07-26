@@ -48,14 +48,14 @@ html, body {
 .app p {
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: #636363;
+    color: #bbb;
 }
 .tile {
     width: 16vw;
     min-width: 175px;;
     height: 16vw;
     min-height: 175px;
-    background-color: #eee;
+    background-color: #333;
 
     justify-content: center;
     align-items: center;
@@ -64,8 +64,8 @@ html, body {
     width: 60%;
     height: 60%;
     /* background-color: #757575; */
-    opacity: 0.6;
-    transition: opacity 1s;
+    opacity: 0.5;
+    transition: opacity .3s;
 }
 .accent-bar {
     width: 20%;
@@ -85,9 +85,12 @@ html, body {
     background-size: contain;
 }
 .app:hover .app-icon{
-    opacity: 0.9;
+    opacity: 0.75;
 }
 /*TESTING//
 div {
     border: 1px solid red;
 }/**/
+.invert {
+    filter: invert(1)
+}
