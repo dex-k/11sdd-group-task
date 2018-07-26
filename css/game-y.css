@@ -1,1 +1,200 @@
-/* CSS specific to Game Y */
+/* For GENERAL styling rules */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+.flex {
+    display: flex;
+}
+
+/*particles-js*/
+#particles-js {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #2c3e50;
+    z-index: -1;
+    position: absolute;
+}
+
+/* CSS specific to Game Y */ 
+#content-wrapper {
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* testing */
+    /* border: 1px solid blue; */
+}
+
+#picture-swap {
+    /* 5x tile width + 10x margin */
+    width: calc( 5*5vw + 10*0.25vw); 
+    /* min-width: calc( 5 * 50px + 10 * 0.25vw ); */
+    /* max-width: calc( 5 * 75px + 10 * 0.25vw ); */
+
+    height: calc( 5*5vw + 10*0.25vw);
+    /* min-height: calc( 5 * 50px + 6 * 0.25vw ); */
+    /* max-height: calc( 5 * 75px + 10 * 0.25vw ); */
+
+    justify-content: center;
+    align-content: center;
+    /* align-items: center; */
+    flex-flow: wrap;
+
+    background-color: #ecf0f1;
+    padding: 0.5em;
+    border-radius: 0.8em;
+
+    /* transition: filter 3s; */
+    /* testing */
+    /* border: 1px solid red; */
+}
+.blur {
+    filter: blur(5px);
+}
+/* .row-separator {
+    display: none; 
+    width: 100%;
+    height: 0;
+} */
+.picture-tile {
+    width: 5vw;
+
+    /*TODO: add these to media queries */
+    /* min-width: 50px; */
+    /* max-width: 75px; */
+
+    height: 5vw;
+    /*TODO: add these to media queries */
+    /* min-height: 50px; */
+    /* max-height: 75px; */
+
+    background-color: mediumslateblue;
+    background-image: url('../media/psych.png') ;
+    /* 5x tile width's + inner margins */
+    background-size: calc(5*5vw + 8*0.25vw);
+
+
+    margin: 0.25vw;
+    transition: margin 1s, background-position .5s, filter 1s;
+}
+.no-margin { 
+    margin: 0;
+}
+
+body:before {
+    /* content: "press:\A 's' to scramble\A 'r' to reset\A 'm' to merge/unmerge\A 'b' to blur\A 'c' to check if done\A 't' to start timer\A 'e' to end timer"; */
+    white-space: pre;
+    position: absolute;
+    left: .5em;
+    top: .5em;
+    color: red;
+}
+
+.picture-tile:nth-child(5n){
+    break-after: always;
+}
+
+/* background top corner % coordinates
+   calculated by percentage width of scaled tile + scaled margin
++---+--------------+--------------+--------------+--------------+--------------+
+|   | a            | b            | c            | d            | e            |
++---+--------------+--------------+--------------+--------------+--------------+
+| 1 | 00.00, 00.00 | 20.37, 00.00 | 40.75, 00.00 | 61.11, 00.00 | 81.48, 00.00 |
++---+--------------+--------------+--------------+--------------+--------------+
+| 2 | 00.00, 20.37 | 20.37, 20.37 | 40.75, 20.37 | 61.11, 20.37 | 81.48, 20.37 |
++---+--------------+--------------+--------------+--------------+--------------+
+| 3 | 00.00, 40.75 | 20.37, 40.75 | 40.75, 40.75 | 61.11, 40.75 | 81.48, 40.75 |
++---+--------------+--------------+--------------+--------------+--------------+
+| 4 | 00.00, 61.11 | 20.37, 61.11 | 40.75, 61.11 | 61.11, 61.11 | 81.48, 61.11 |
++---+--------------+--------------+--------------+--------------+--------------+
+| 5 | 00.00, 81.48 | 20.37, 81.48 | 40.75, 81.48 | 61.11, 81.48 | 81.48, 81.48 |
++---+--------------+--------------+--------------+--------------+--------------+
+*/
+
+/* specific tile row/column background positions */
+/* rows / x-coords */
+.picture-tile[data-fluid-column="a"] { 
+    background-position-x: calc(27vw - (5vw + 0.5vw) * 0);
+}
+.picture-tile[data-fluid-column="b"] { 
+    background-position-x: calc(27vw - (5vw + 0.5vw) * 1);
+}
+.picture-tile[data-fluid-column="c"] { 
+    background-position-x: calc(27vw - (5vw + 0.5vw) * 2);
+}
+.picture-tile[data-fluid-column="d"] { 
+    background-position-x: calc(27vw - (5vw + 0.5vw) * 3);
+}
+.picture-tile[data-fluid-column="e"] { 
+    background-position-x: calc(27vw - (5vw + 0.5vw) * 4);
+}
+/* columns / y-coords */
+.picture-tile[data-fluid-row="1"] { 
+    background-position-y: calc(27vw - (5vw + 0.5vw) * 0);
+}
+.picture-tile[data-fluid-row="2"] { 
+    background-position-y: calc(27vw - (5vw + 0.5vw) * 1);
+}
+.picture-tile[data-fluid-row="3"] { 
+    background-position-y: calc(27vw - (5vw + 0.5vw) * 2);
+}
+.picture-tile[data-fluid-row="4"] { 
+    background-position-y: calc(27vw - (5vw + 0.5vw) * 3);
+}
+.picture-tile[data-fluid-row="5"] { 
+    background-position-y: calc(27vw - (5vw + 0.5vw) * 4);
+}
+
+#timer {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+
+    background-color: #ecf0f1;
+    padding: 0.5em;
+    border-radius: 0.4em;
+    margin: 1em 
+}
+#timer p {
+
+    margin: 0;
+    padding: 0;
+    line-height: 1em;
+    font-size: 1.2em;
+}
+
+.popup {
+    position: absolute;
+        top: 1em;
+        left: 1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    background-color: #424242;
+    width: 20em;
+    padding: .8em;
+    border-radius: 0.5em;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.popup p {
+    margin: 0;
+    padding: 0;
+}
+.popup button {
+    margin-top: 1em;
+    width: auto;
+    background-color: #ecf0f1;
+    border-radius: 0.25em;
+    font-size: 1em;
+}
+#start {
+    /* display: none */
+}
+#end {
+    display: none;
+}
