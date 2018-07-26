@@ -7,6 +7,14 @@ html, body {
     display: flex;
 }
 
+#name {
+    background-color: white;
+    position: absolute;
+    margin: 0;
+    padding: .25em;
+    top: 1em;
+    right: 1em;
+}
 /*particles-js*/
 #particles-js {
     margin: 0;
