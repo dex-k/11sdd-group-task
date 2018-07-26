@@ -256,13 +256,9 @@ var toggleMargin = function() {
   }
 }
 
-var toggleBlur = function() {
-  if ( $('#picture-swap').hasClass('blur') ) {
-    $('#picture-swap').removeClass('blur')
-  } else {
-    $('#picture-swap').addClass('blur')
-  }
-}
+var toggleBlur = function (){
+  $('.picture-tile').toggleClass('blur');
+};
 
 var checkDone = function() {
   var tileArray = document.getElementsByClassName('picture-tile');
@@ -296,8 +292,7 @@ var doneEvents = function(state) {
   if (state) {
     //done
     console.log("done");
-    toggleBlur();
-    toggleMargin();
+    stopGame();
   } else {
     //not done
   }
@@ -310,24 +305,24 @@ var timer = {
   secondsElapsed: 0,
   start: function(){
       console.log('start timer');
-    // if(!timer.startTime){return}; //exit if timer already going
-      console.log('passed check');
     timer.startTime = Date.now();
-    $('#time').text(timer.secondsElapsed);
+    // $('#time').text(timer.secondsElapsed);
     countdown = setInterval( function() {
       timer.timeElapsed = Date.now() - timer.startTime;
       timer.secondsElapsed = Math.floor( timer.timeElapsed / 1000 );
-      $('#time').text(timer.secondsElapsed)
+      $('#time').text(timer.secondsElapsed);
+
+      $('#time').text(Math.floor( (Date.now() - timer.startTime) / 1000 ));
         console.log(timer.secondsElapsed + 's');
     }, 1000)
   },
   stop: function() {
     clearInterval(countdown);
     timer.endTime = Date.now();
-      console.log('stop timer')
+      console.log('stop timer');
     timer.timeElapsed = timer.endTime - timer.startTime;
     timer.secondsElapsed = Math.floor( timer.timeElapsed / 1000 );
-    $('#time').text(timer.secondsElapsed)
+    $('#time').text(timer.secondsElapsed);
       console.log("Total: " + timer.secondsElapsed + "s");
   },
   reset: function() {
@@ -338,6 +333,35 @@ var timer = {
     timer.secondsElapsed = 0;
     $('#time').text(timer.secondsElapsed);
   }
+}
+
+var startButton = function() {
+  $('.popup').fadeOut(600);
+  setTimeout( function() {
+    reset();
+    scramble();
+    timer.start();
+  }, 500)
+}
+
+var calculateScore = function (endTime, variant) {
+  var score;
+  switch (variant) {
+    case 0:
+      score = Math.round( (1 / endTime) * 10000 );
+      break;
+    case 1:
+      score = Math.round( (500 - endTime) / 5 )
+  }
+  return score;
+}
+var stopGame = function() {
+  timer.stop();
+  var score = calculateScore(timer.secondsElapsed, 1);
+  console.log(score);
+  $('#seconds').text(timer.secondsElapsed);
+  $('#score').text(score);
+  $('#end').fadeIn();
 }
 //Anything that changes the html/page here
 $(document).ready(function() {
@@ -359,17 +383,25 @@ $(document).ready(function() {
         break;
       case 98: //b
         toggleBlur();
+        break;
       case 99: //c
         checkDone();
+        break;
       case 116: //t
         timer.start();
+        break;
       case 101: //e
         timer.stop();
+        break;
     }
   });
   //add drag event handlers
-  $('.picture-tile').on("dragstart", tile.drag)
-                    .on("dragover", tile.allowDrop)
-                    .on("drop", tile.drop)
-                    .on("dragend", tile.dragEnd);
+  $('.popup button').on("click", function() {
+    startButton();
+
+    $('.picture-tile').on("dragstart", tile.drag)
+      .on("dragover", tile.allowDrop)
+      .on("drop", tile.drop)
+      .on("dragend", tile.dragEnd);
+  })
 });

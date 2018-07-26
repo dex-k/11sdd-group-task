@@ -15,10 +15,25 @@
 </head>
 <body>
     <div id="particles-js"></div>
+    <div class="popup" id="start">
+        <p> 
+            When you press start, the picture will scramble and the timer will start.
+            Drag and drop tiles until the picture is back to normal. <br/>
+            Try and get the time as low as possible!
+        </p>
+        <button>Start!</button>
+    </div>
+    <div class="popup" id="end">
+        <p> 
+            Congratulations! You finished in <span id="seconds">0</span> seconds! <br/>
+            That gives you a score of <span id="score">NaN</span>!
+        </p>
+        <button>Try Again?</button>
+    </div>
     <div id="content-wrapper" class="flex">
         <div id="timer">
             <p>
-                <span id="time">x</span>s</p>
+                Time: <span id="time">0</span>s</p>
         </div>
         <div id="picture-swap" class="flex">
             <!-- 
