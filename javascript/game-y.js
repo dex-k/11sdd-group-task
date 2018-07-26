@@ -194,17 +194,17 @@ var scramble = function() {
   for (i = 0; i < fromIDArray.length; i++) {
     swapFluidData(fromIDArray[i], toIDArray[i]);
   }
-  console.log('scrambled');
+  // console.log('scrambled');
 };
 
 var reset = function() {
   var currentFluidArray = document.getElementsByClassName('picture-tile')
   for (i = 0; i < currentFluidArray.length; i++){
     let id = $(currentFluidArray[i]).prop('id');
-    console.log('id: ' + id)
+    // console.log('id: ' + id)
     let column = id[0];
     let row = id[1];
-    console.log('column: ' + column + ', row: ' + row)
+    // console.log('column: ' + column + ', row: ' + row)
     $(currentFluidArray[i]).attr('data-fluid-column', column);
     $(currentFluidArray[i]).attr('data-fluid-row', row);
   }
@@ -231,7 +231,7 @@ var tile = {
       // console.log('droped onto ' + e.target.id);
     var dragged = e.originalEvent.dataTransfer.getData("text");
     var dropped = e.target.id;
-    console.log("(dragged " + dragged + ", onto " + dropped + ")");
+    // console.log("(dragged " + dragged + ", onto " + dropped + ")");
 
     $('#' + dragged).css('visibility', '');
     //THE MAGIC HAPPENS HERE
@@ -291,7 +291,7 @@ var checkDone = function() {
 var doneEvents = function(state) {
   if (state) {
     //done
-    console.log("done");
+    // console.log("done");
     stopGame();
   } else {
     //not done
@@ -313,17 +313,17 @@ var timer = {
       $('#time').text(timer.secondsElapsed);
 
       $('#time').text(Math.floor( (Date.now() - timer.startTime) / 1000 ));
-        console.log(timer.secondsElapsed + 's');
+        // console.log(timer.secondsElapsed + 's');
     }, 1000)
   },
   stop: function() {
     clearInterval(countdown);
     timer.endTime = Date.now();
-      console.log('stop timer');
+      // console.log('stop timer');
     timer.timeElapsed = timer.endTime - timer.startTime;
     timer.secondsElapsed = Math.floor( timer.timeElapsed / 1000 );
     $('#time').text(timer.secondsElapsed);
-      console.log("Total: " + timer.secondsElapsed + "s");
+      // console.log("Total: " + timer.secondsElapsed + "s");
   },
   reset: function() {
     timer.startTime = 0;
@@ -358,7 +358,7 @@ var calculateScore = function (endTime, variant) {
 var stopGame = function() {
   timer.stop();
   var score = calculateScore(timer.secondsElapsed, 1);
-  console.log(score);
+  // console.log(score);
   $('#seconds').text(timer.secondsElapsed);
   $('#score').text(score);
   $('#end').fadeIn();
@@ -398,10 +398,10 @@ $(document).ready(function() {
   //add drag event handlers
   $('.popup button').on("click", function() {
     startButton();
-
-    $('.picture-tile').on("dragstart", tile.drag)
-      .on("dragover", tile.allowDrop)
-      .on("drop", tile.drop)
-      .on("dragend", tile.dragEnd);
   })
+
+  $('.picture-tile').on("dragstart", tile.drag)
+    .on("dragover", tile.allowDrop)
+    .on("drop", tile.drop)
+    .on("dragend", tile.dragEnd);
 });
