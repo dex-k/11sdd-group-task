@@ -206,3 +206,21 @@ body:before {
 #end {
     display: none;
 }
+
+#paste {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #424242;
+    background-color: #ecf0f1;
+    padding: .8em;
+    border-radius: 0.5em;
+
+    border-right: .5em solid #bdc3c7;
+}
+#paste p {
+    margin: 0;
+    padding: 0;
+    line-height: .5em;
+}

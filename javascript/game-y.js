@@ -363,6 +363,26 @@ var stopGame = function() {
   $('#score').text(score);
   $('#end').fadeIn();
 }
+// https://mobiarch.wordpress.com/2013/09/25/upload-image-by-copy-and-paste/
+var imagePaste = function(e) {
+  console.log(e);
+  var clip = e.originalEvent.clipboardData.items;
+  console.log(clip);
+  for (var i = 0 ; i < e.originalEvent.clipboardData.items.length ; i++) {
+    var item = e.originalEvent.clipboardData.items[i];
+    console.log("Item type: " + item.type);
+    if (item.type.indexOf("image") != -1) {
+        setImage(item.getAsFile());
+    } else {
+        console.log("Discarding non-image paste data");
+    }
+  }
+}
+var setImage = function(image) {
+  console.log(image);
+  var imgPath = URL.createObjectURL(image);
+  $('.picture-tile').css('background-image',  "url( '" + imgPath + "' )")
+}
 //Anything that changes the html/page here
 $(document).ready(function() {
   console.log("Document ready ");
@@ -404,4 +424,5 @@ $(document).ready(function() {
     .on("dragover", tile.allowDrop)
     .on("drop", tile.drop)
     .on("dragend", tile.dragEnd);
+  $('#paste').on("paste", imagePaste)
 });
