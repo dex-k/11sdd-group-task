@@ -133,80 +133,55 @@ var swapFluidData = function(fromID, toID) {
     // console.log('set ' + fromID + ' fluid-row to ' + toY);
 ;}
 
-/////////////////////////////////////////////
-/*REMOVED 21-06-18 
-//fromID and toID are strings without leading #
-var swapID = function(firstID, secondID) {
-    // console.log('swapping ID\'s of ' + firstID + ' and ' + secondID);
-  $('#' + secondID).removeProp('id');
-    // console.log('removed ID of ' + secondID)
-  $('#' + firstID).prop('id', secondID);
-    // console.log('set ID of ' + firstID + ' to ' + secondID)
-  $('#' + secondID).prop('id', firstID);
-    // console.log('set ID of ' + secondID + ' to ' + firstID)
-  //SUMARRY
-    console.log("(" + firstID + " <=> " + secondID + ")")
-}//*/
-
-/////////////////////////////////////////////
-/* removed 21/06/18
-var swapTiles = function(fromTile, toTile) {
-  //variables to stop any refrencing errors? maybe this will help?
-  var a = fromTile,
-      b = toTile;
-  swapID(a, b);
-  swapFluidData(a, b);
-}//*/
-
 /**
- * Randomize array element order in-place.
+ * Randomize s element order in-place.
  * Using Durstenfeld shuffle algorithm.
- * https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+ * https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-s
  */
-var shuffleArray = function(array) {
-  for (var i = array.length - 1; i > 0; i--) {
+var shuffles = function(s) {
+  for (var i = s.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
-      var temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
+      var temp = s[i];
+      s[i] = s[j];
+      s[j] = temp;
   }
 }
 
 var scramble = function() {
-  //ordered array of all tiles
-  var fromIDArray = ['a1', 'a2', 'a3', 'a4', 'a5',
+  //ordered s of all tiles
+  var fromIDs = ['a1', 'a2', 'a3', 'a4', 'a5',
                      'b1', 'b2', 'b3', 'b4', 'b5',
                     'c1', 'c2', 'c3', 'c4', 'c5',
                     'd1', 'd2', 'd3', 'd4', 'd5',
                     'e1', 'e2', 'e3', 'e4', 'e5'];
-  //copy the ordered array
-  var toIDArray = ['a1', 'a2', 'a3', 'a4', 'a5',
+  //copy the ordered s
+  var toIDs = ['a1', 'a2', 'a3', 'a4', 'a5',
                    'b1', 'b2', 'b3', 'b4', 'b5',
                    'c1', 'c2', 'c3', 'c4', 'c5',
                    'd1', 'd2', 'd3', 'd4', 'd5',
                    'e1', 'e2', 'e3', 'e4', 'e5'];
-    // console.log(toIDArray);
-  //randomise the second array
-  shuffleArray(toIDArray);
-    // console.log(toIDArray);
-  //set each tile in the first array to the tile in the second
+    // console.log(toIDs);
+  //randomise the second s
+  shuffles(toIDs);
+    // console.log(toIDs);
+  //set each tile in the first s to the tile in the second
   //i.e. randomise the order
-  for (i = 0; i < fromIDArray.length; i++) {
-    swapFluidData(fromIDArray[i], toIDArray[i]);
+  for (i = 0; i < fromIDs.length; i++) {
+    swapFluidData(fromIDs[i], toIDs[i]);
   }
   // console.log('scrambled');
 };
 
 var reset = function() {
-  var currentFluidArray = document.getElementsByClassName('picture-tile')
-  for (i = 0; i < currentFluidArray.length; i++){
-    let id = $(currentFluidArray[i]).prop('id');
+  var currentFluids = document.getElementsByClassName('picture-tile')
+  for (i = 0; i < currentFluids.length; i++){
+    let id = $(currentFluids[i]).prop('id');
     // console.log('id: ' + id)
     let column = id[0];
     let row = id[1];
     // console.log('column: ' + column + ', row: ' + row)
-    $(currentFluidArray[i]).attr('data-fluid-column', column);
-    $(currentFluidArray[i]).attr('data-fluid-row', row);
+    $(currentFluids[i]).attr('data-fluid-column', column);
+    $(currentFluids[i]).attr('data-fluid-row', row);
   }
 }
 //drag and drop functions/variables
@@ -261,29 +236,18 @@ var toggleBlur = function (){
 };
 
 var checkDone = function() {
-  var tileArray = document.getElementsByClassName('picture-tile');
-  var fluidArray = [];
-  var trueArray = [];
-  //initialise same variable
-  var same = true;
-  for (i = 0; i < tileArray.length; i++) {
-    var fluidColumn = $(tileArray[i]).attr('data-fluid-column');
-    var fluidRow = $(tileArray[i]).attr('data-fluid-row');
-    var trueColumn = $(tileArray[i]).attr('data-true-column');
-    var trueRow = $(tileArray[i]).attr('data-true-row');
-    var fluidData = fluidColumn + fluidRow;
-    var trueData = trueColumn + trueRow;
-      // console.log("fluid, true = " + fluidData + ' ,' + trueData)
-    fluidArray.push(fluidData);
-    trueArray.push(trueData);
-  }
-    // console.log('fluid ' + fluidArray);
-    // console.log('true ' + trueArray)
-  for (i = 0; i < tileArray.length; i++) {
-    var check = (fluidArray[i] == trueArray[i]);
-      // console.log(check)
-    //boolean multiplication u 
-    same = same && check;
+  var tiles = document.getElementsByClassName('picture-tile'),
+      same = true;
+  for (i = 0; i < tiles.length; i++) {
+    var fluidColumn = $(tiles[i]).attr('data-fluid-column'),
+        fluidRow = $(tiles[i]).attr('data-fluid-row'),
+        trueColumn = $(tiles[i]).attr('data-true-column'),
+        trueRow = $(tiles[i]).attr('data-true-row'),
+        fluidData = fluidColumn + fluidRow,
+        trueData = trueColumn + trueRow;
+    if (fluidData != trueData) {
+      same = false;
+    }
   }
   return (same);
 }
@@ -293,8 +257,6 @@ var doneEvents = function(state) {
     //done
     // console.log("done");
     stopGame();
-  } else {
-    //not done
   }
 }
 var timer = {
@@ -389,7 +351,6 @@ $(document).ready(function() {
   //sets up particle background ([id of particles div], [json config]
   particlesJS('particles-js', particlesConfig);
   console.log('particles-js loaded')
-  $(document).keypress((k)=>console.log('keypress', k.which));
   $(document).keypress(function(key) {
     switch (key.which) {
       case 115: //s
