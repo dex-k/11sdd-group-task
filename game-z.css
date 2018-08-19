@@ -1,0 +1,39 @@
+/* CSS specific to Game Z */
+.tile {
+    width:5vw;
+    height:5vw;
+    margin:1vw;
+    background-image:url("../media/cover.png");
+    float:left;
+    background-repeat: round;
+    opacity: 0.8;
+    cursor:pointer;
+    z-index: 1;
+}
+.pic {
+    z-index: 1;
+    background-repeat:round;
+    height:100%;
+    width:100%;
+}
+.game-wrapper {
+    z-index: 1;
+    width:42vw;
+    height:42vw;
+    position:absolute;
+    left:29vw;
+    top:5vw;
+}
+.counter {
+    color:gray;
+    font-family:Arial;
+    font-size: 5vw;
+    position:absolute;
+    top:5vw;
+    right:5vw;
+}
+p {
+    position:absolute;
+    top:0;
+
+}
