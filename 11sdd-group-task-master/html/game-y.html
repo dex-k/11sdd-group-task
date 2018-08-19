@@ -1,0 +1,286 @@
+<html>
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    
+    <!-- Start Javascript -->
+    <script src="../javascript/libraries/jquery.js"></script>
+    <script src="../javascript/game-y.js"></script>
+    <script src="../javascript/libraries/particles.js"></script>
+    <!-- End Javascript -->
+
+    <!-- Start CSS -->
+    <link href="../css/game-y.css" rel="stylesheet">
+    <!-- End CSS -->
+</head>
+<body>
+    <div id="particles-js"></div>
+    <p id="name">Developed by <strong>Dexter Konijn</strong></p>
+    <div class="popup" id="start">
+        <p> 
+            When you press start, the picture will scramble and the timer will start.
+            Drag and drop tiles until the picture is back to normal. <br/>
+            Try and get the time as low as possible!
+        </p>
+        <button>Start!</button>
+    </div>
+    <div class="popup" id="end">
+        <p> 
+            Congratulations! You finished in <span id="seconds">0</span> seconds! <br/>
+            That gives you a score of <span id="score">NaN</span>!
+        </p>
+        <button>Try Again?</button>
+    </div>
+    <div id="paste"><p>Click me to paste your own image!</p></div>
+    <div id="content-wrapper" class="flex">
+        <div id="timer">
+            <p>
+                Time: <span id="time">0</span>s</p>
+        </div>
+        <div id="picture-swap" class="flex">
+            <!-- 
+                structure:
+                data-fluid-row=[a,b,c,d,e]
+                data-fluid-column=[1,2,3,4,5]
+                data-true-row=[a,b,c,d,e]
+                data-true-row=[1,2,3,4,5]
+             -->
+            <!-- row 1 -->
+            <div 
+                class="picture-tile"
+                id="a1"
+                draggable="true"
+                data-fluid-row="1"
+                data-fluid-column="a"
+                data-true-row="1"
+                data-true-column="a">
+            </div>
+            <div 
+                class="picture-tile"
+                id="b1"
+                draggable="true"
+                data-fluid-row="1"
+                data-fluid-column="b"
+                data-true-row="1"
+                data-true-column="b">
+            </div>
+            <div 
+                class="picture-tile"
+                id="c1"
+                draggable="true"
+                data-fluid-row="1"
+                data-fluid-column="c"
+                data-true-row="1"
+                data-true-column="c">
+            </div>
+            <div 
+                class="picture-tile"
+                id="d1"
+                draggable="true"
+                data-fluid-row="1"
+                data-fluid-column="d"
+                data-true-row="1"
+                data-true-column="d">
+            </div>
+            <div 
+                class="picture-tile"
+                id="e1"
+                draggable="true"
+                data-fluid-row="1"
+                data-fluid-column="e"
+                data-true-row="1"
+                data-true-column="e">
+            </div>
+            <!-- row 2 -->
+            <!-- <div class="row-separator"></div> -->
+            <div 
+                class="picture-tile"
+                id="a2"
+                draggable="true"
+                data-fluid-row="2"
+                data-fluid-column="a"
+                data-true-row="2"
+                data-true-column="a">
+            </div>
+            <div 
+                class="picture-tile"
+                id="b2"
+                draggable="true"
+                data-fluid-row="2"
+                data-fluid-column="b"
+                data-true-row="2"
+                data-true-column="b">
+            </div>
+            <div 
+                class="picture-tile"
+                id="c2"
+                draggable="true"
+                data-fluid-row="2"
+                data-fluid-column="c"
+                data-true-row="2"
+                data-true-column="c">
+            </div>
+            <div 
+                class="picture-tile"
+                id="d2"
+                draggable="true"
+                data-fluid-row="2"
+                data-fluid-column="d"
+                data-true-row="2"
+                data-true-column="d">
+            </div>
+            <div 
+                class="picture-tile"
+                id="e2"
+                draggable="true"
+                data-fluid-row="2"
+                data-fluid-column="e"
+                data-true-row="2"
+                data-true-column="e">
+            </div>
+            <!-- row 3 -->
+            <!-- <div class="row-separator"></div> -->
+            <div 
+                class="picture-tile"
+                id="a3"
+                draggable="true"
+                data-fluid-row="3"
+                data-fluid-column="a"
+                data-true-row="3"
+                data-true-column="a">
+            </div>
+            <div 
+                class="picture-tile"
+                id="b3"
+                draggable="true"
+                data-fluid-row="3"
+                data-fluid-column="b"
+                data-true-row="3"
+                data-true-column="b">
+            </div>
+            <div 
+                class="picture-tile"
+                id="c3"
+                draggable="true"
+                data-fluid-row="3"
+                data-fluid-column="c"
+                data-true-row="3"
+                data-true-column="c">
+            </div>
+            <div 
+                class="picture-tile"
+                id="d3"
+                draggable="true"
+                data-fluid-row="3"
+                data-fluid-column="d"
+                data-true-row="3"
+                data-true-column="d">
+            </div>
+            <div 
+                class="picture-tile"
+                id="e3"
+                draggable="true"
+                data-fluid-row="3"
+                data-fluid-column="e"
+                data-true-row="3"
+                data-true-column="e">
+            </div>
+            <!-- row 4 -->
+            <!-- <div class="row-separator"></div> -->
+            <div 
+                class="picture-tile"
+                id="a4"
+                draggable="true"
+                data-fluid-row="4"
+                data-fluid-column="a"
+                data-true-row="4"
+                data-true-column="a">
+            </div>
+            <div 
+                class="picture-tile"
+                id="b4"
+                draggable="true"
+                data-fluid-row="4"
+                data-fluid-column="b"
+                data-true-row="4"
+                data-true-column="b">
+            </div>
+            <div 
+                class="picture-tile"
+                id="c4"
+                draggable="true"
+                data-fluid-row="4"
+                data-fluid-column="c"
+                data-true-row="4"
+                data-true-column="c">
+            </div>
+            <div 
+                class="picture-tile" 
+                id="d4"
+                draggable="true"
+                data-fluid-row="4"
+                data-fluid-column="d"
+                data-true-row="4"
+                data-true-column="d">
+            </div>
+            <div 
+                class="picture-tile"
+                id="e4"
+                draggable="true"
+                data-fluid-row="4"
+                data-fluid-column="e"
+                data-true-row="4"
+                data-true-column="e">
+            </div>
+            <!-- row 5 -->
+            <!-- <div class="row-separator"></div> -->
+            <div 
+                class="picture-tile"
+                id="a5"
+                draggable="true"
+                data-fluid-row="5"
+                data-fluid-column="a"
+                data-true-row="5"
+                data-true-column="a">
+            </div>
+            <div 
+                class="picture-tile"
+                id="b5"
+                draggable="true"
+                data-fluid-row="5"
+                data-fluid-column="b"
+                data-true-row="5"
+                data-true-column="b">
+            </div>
+            <div 
+                class="picture-tile"
+                id="c5"
+                draggable="true"
+                data-fluid-row="5"
+                data-fluid-column="c"
+                data-true-row="5"
+                data-true-column="c">
+            </div>
+            <div 
+                class="picture-tile"
+                id="d5"
+                draggable="true"
+                data-fluid-row="5"
+                data-fluid-column="d"
+                data-true-row="5"
+                data-true-column="d">
+            </div>
+            <div 
+                class="picture-tile"
+                id="e5"
+                draggable="true"
+                data-fluid-row="5"
+                data-fluid-column="e"
+                data-true-row="5"
+                data-true-column="e">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

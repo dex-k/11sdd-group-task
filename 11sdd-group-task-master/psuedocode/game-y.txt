@@ -1,0 +1,44 @@
+BEGIN scramble
+    fromIDArray = ('a1', 'a2', 'a3', 'a4', 'a5',
+                   'b1', 'b2', 'b3', 'b4', 'b5',
+                   'c1', 'c2', 'c3', 'c4', 'c5',
+                   'd1', 'd2', 'd3', 'd4', 'd5',
+                   'e1', 'e2', 'e3', 'e4', 'e5')
+    toIDArray = ('a1', 'a2', 'a3', 'a4', 'a5',
+                 'b1', 'b2', 'b3', 'b4', 'b5',
+                 'c1', 'c2', 'c3', 'c4', 'c5',
+                 'd1', 'd2', 'd3', 'd4', 'd5',
+                 'e1', 'e2', 'e3', 'e4', 'e5')
+    randomise(toIDArray)
+    FOR i = 0 TO length of fromIDArray STEP 1
+        swap picture data of tiles at fromIDArray(i) and toIDArray(i)
+    NEXT i
+END scramble
+
+BEGIN reset
+    currentFluidArray = array of all game tiles
+    FOR i = 0 TO length of currentFluidArray STEP 1
+        id = id of tile at currentFluidArray(i)
+        id-column = first character of id
+        id-row = second character of id
+        set currentFluidArray(i) column to id-column
+        set currentFluidArray(i) row to id-row
+    NEXT i
+END reset
+
+BEGIN checkDone
+    tiles = array of all game tiles
+    same = true
+    FOR i = 0 TO length of tiles STEP 1
+        fluidColumn = current column of tile(i)
+        fluidRow = current row of tile(i)
+        trueColumn = correct column of tile(i)
+        trueRow = correct row of tile(i)
+        fluidData = luidColumn + fluidRow
+        trueData = trueColumn + trueRow
+        IF fluidData <> trueData
+            same = false
+        ENDIF
+    NEXT i
+    RETURN same
+END checkDone
